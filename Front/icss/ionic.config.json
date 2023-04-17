@@ -1,0 +1,7 @@
+{
+  "name": "ICSS",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
