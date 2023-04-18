@@ -1,5 +1,13 @@
 # ICSS-Intelligent-Conference-Summary-System
 
+# 项目简介&&原型
+
+## 原型
+
+### HomeScreen
+
+![](https://matt-obstorage777-1313452829.cos.ap-shanghai.myqcloud.com/pic_store/20230418003855.png)
+
 # 前端
 
 采用 IONIC 进行跨平台开发
