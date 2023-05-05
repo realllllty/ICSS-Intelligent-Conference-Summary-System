@@ -2,25 +2,17 @@
   <ion-page>
     <ion-tabs>
       <ion-router-outlet></ion-router-outlet>
-      <ion-tab-bar slot="bottom">
+      <ion-tab-bar slot="bottom" class="float">
         <ion-tab-button tab="home" href="/home">
           <ion-icon :icon="mic" />
-          <ion-label>拾取声音</ion-label>
         </ion-tab-button>
 
         <ion-tab-button tab="library" href="/library">
           <ion-icon :icon="library" />
-          <ion-label>会议库</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button tab="search" href="/search">
-          <ion-icon :icon="search" />
-          <ion-label>Search</ion-label>
         </ion-tab-button>
 
         <ion-tab-button tab="about" href="/about">
           <ion-icon :icon="cog" />
-          <ion-label>关于</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
@@ -60,3 +52,13 @@ export default {
   },
 };
 </script>
+<style scoped>
+.float {
+  width: 90%;
+  position: relative;
+  transform: translate(5%, -30%);
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0px -5px 10px rgba(47, 26, 185, 0.08);
+}
+</style>

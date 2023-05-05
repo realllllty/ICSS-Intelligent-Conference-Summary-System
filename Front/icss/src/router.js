@@ -27,10 +27,6 @@ const routes = [
         path: "library",
         component: () => import("./views/LibraryPage.vue"),
       },
-      {
-        path: "search",
-        component: () => import("./views/SearchPage.vue"),
-      },
     ],
   },
 ];
