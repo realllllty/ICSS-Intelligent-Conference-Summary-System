@@ -167,19 +167,19 @@ ion-progress-bar {
                 <ion-title align="center">
                     GatherGenius 集思
                 </ion-title>
+                <ion-progress-bar type="indeterminate"></ion-progress-bar>
             </ion-toolbar>
         </ion-header>
 
         <ion-content>
             <div class="float3">
-                <!--                <div class="statusbar"></div>-->
-                <ion-progress-bar type="indeterminate"></ion-progress-bar>
-                <content style="z-index: 100"></content>
+                <!--<div class="statusbar"></div>-->
+                <content style="z-index: 1"></content>
             </div>
 
             <div class="float2">
                 <!--                <div class="statusbar"></div>-->
-                <ion-progress-bar type="indeterminate"></ion-progress-bar>
+                <!--                <ion-progress-bar type="indeterminate"></ion-progress-bar>-->
             </div>
 
             <div class="float">
