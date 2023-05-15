@@ -154,6 +154,13 @@ ion-progress-bar {
     --background: #a9cea9;
 }
 
+.music-library-2 {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    left: 50%;
+}
+
 </style>
 
 
@@ -180,6 +187,11 @@ ion-progress-bar {
             <div class="float2">
                 <!--                <div class="statusbar"></div>-->
                 <!--                <ion-progress-bar type="indeterminate"></ion-progress-bar>-->
+            <img
+                        src="../../assets/player/music-library-2.svg"
+                        class="pllib heartbeat"
+                        name="music-library-2"
+            />
             </div>
 
             <div class="float">
