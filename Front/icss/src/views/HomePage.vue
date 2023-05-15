@@ -149,11 +149,9 @@
     animation: heartbeat 1.5s ease-in-out infinite both;
 }
 
-.statusbar {
-    position: relative;
-    top: 0px;
-    height: 7px;
-    background-color: #4A0BA4FF;
+ion-progress-bar {
+    --progress-background: #5ed517;
+    --background: #a9cea9;
 }
 
 </style>
@@ -175,12 +173,14 @@
 
         <ion-content>
             <div class="float3">
-                <div class="statusbar"></div>
+<!--                <div class="statusbar"></div>-->
+                <ion-progress-bar type="indeterminate"></ion-progress-bar>
                 <content style="z-index: 100"></content>
             </div>
 
             <div class="float2">
-                <div class="statusbar"></div>
+<!--                <div class="statusbar"></div>-->
+                <ion-progress-bar type="indeterminate"></ion-progress-bar>
             </div>
 
             <div class="float">
@@ -206,6 +206,7 @@ import {
     IonTitle,
     IonContent,
     IonPage,
+    IonProgressBar
 } from "@ionic/vue";
 import {personCircle} from "ionicons/icons";
 import "bootstrap-icons/font/bootstrap-icons.css";
