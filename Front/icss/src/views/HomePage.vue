@@ -48,7 +48,7 @@
     gap: 29px;
     background-color: white;
     box-shadow: 0px -5px 10px rgba(47, 26, 185, 0.08);
-    //padding: 0px;
+//padding: 0px;
 }
 
 .pllib {
@@ -150,12 +150,11 @@
 }
 
 ion-progress-bar {
-    --progress-background: #5ed517;
+    --progress-background: #228B22;
     --background: #a9cea9;
 }
 
 </style>
-
 
 
 <template>
@@ -166,20 +165,20 @@ ion-progress-bar {
                   <ion-icon slot="icon-only" :icon="personCircle"></ion-icon>
                 </ion-button> -->
                 <ion-title align="center">
-                    GatherGenius  集思
+                    GatherGenius 集思
                 </ion-title>
             </ion-toolbar>
         </ion-header>
 
         <ion-content>
             <div class="float3">
-<!--                <div class="statusbar"></div>-->
+                <!--                <div class="statusbar"></div>-->
                 <ion-progress-bar type="indeterminate"></ion-progress-bar>
                 <content style="z-index: 100"></content>
             </div>
 
             <div class="float2">
-<!--                <div class="statusbar"></div>-->
+                <!--                <div class="statusbar"></div>-->
                 <ion-progress-bar type="indeterminate"></ion-progress-bar>
             </div>
 
