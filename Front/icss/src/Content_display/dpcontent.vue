@@ -27,10 +27,16 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+    <ion-fab>
+      <ion-fab-button>
+        <ion-icon :icon="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   </ion-card>
 </template>
 
 <script setup lang="ts">
 import { dpMsg } from "./dpfiles";
-import { defineComponent } from "vue";
+import { IonFab, IonFabButton, IonIcon } from "@ionic/vue";
+import { add } from "ionicons/icons";
 </script>

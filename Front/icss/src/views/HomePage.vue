@@ -151,14 +151,27 @@
 
 <template>
   <ion-page>
-    <!-- <ion-header>
-      <ion-toolbar>
-        <ion-title>Listen now</ion-title>
+    <ion-header>
+      <ion-toolbar style="text-align: center" color="primary">
+        <!-- <ion-button>
+          <ion-icon slot="icon-only" :icon="personCircle"></ion-icon>
+        </ion-button> -->
+        <ion-title>
+          <p style="font-size: smaller">
+            <span style="font-family: 'Times New Roman', Times, serif"
+              >GatherGenius
+            </span>
+            <span style="font-family: 'Courier New', Courier, monospace"
+              >集思</span
+            >
+          </p>
+        </ion-title>
       </ion-toolbar>
-    </ion-header> -->
+    </ion-header>
     <ion-content>
       <div class="float3">
         <div class="statusbar"></div>
+        <content style="z-index: 100"></content>
       </div>
       <div class="float2">
         <div class="statusbar"></div>
@@ -185,8 +198,9 @@ import {
   IonContent,
   IonPage,
 } from "@ionic/vue";
+import { personCircle } from "ionicons/icons";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import content from "@components/contentdisplay.vue";
+import content from "../components/contentdisplay.vue";
 
 export default {
   components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, content },
