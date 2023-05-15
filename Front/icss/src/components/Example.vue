@@ -12,7 +12,7 @@
         </ion-tab-button>
 
         <ion-tab-button tab="about" href="/about">
-          <ion-icon :icon="cog" />
+          <ion-icon :icon="informationCircleOutline()" />
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
@@ -30,9 +30,17 @@ import {
   IonIcon,
 } from "@ionic/vue";
 
-import { mic, cog, library, search } from "ionicons/icons";
+import {mic, cog, library, search, information, informationCircleOutline} from "ionicons/icons";
 
 export default {
+    methods: {
+        informationCircleOutline() {
+            return informationCircleOutline
+        },
+        information() {
+            return information
+        }
+    },
   components: {
     IonPage,
     IonTabs,
