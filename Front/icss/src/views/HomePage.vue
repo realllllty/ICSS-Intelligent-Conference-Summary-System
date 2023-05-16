@@ -1,4 +1,5 @@
 <style scoped>
+
 .float {
     width: 90%;
     height: 10%;
@@ -60,20 +61,6 @@
     z-index: 10;
 }
 
-.backicon {
-    width: 44px;
-    height: 44px;
-}
-
-.playicon {
-    width: 35px;
-    height: 35px;
-}
-
-.repeaticon {
-    width: 24px;
-    height: 24px;
-}
 
 @-webkit-keyframes heartbeat {
     from {
@@ -170,9 +157,6 @@ ion-progress-bar {
     <ion-page>
         <ion-header>
             <ion-toolbar color="primary">
-                <!-- <ion-button>
-                  <ion-icon slot="icon-only" :icon="personCircle"></ion-icon>
-                </ion-button> -->
                 <ion-title align="center">
                     GatherGenius 集思
                 </ion-title>
@@ -182,29 +166,38 @@ ion-progress-bar {
 
         <ion-content>
             <div class="float3">
-                <!--<div class="statusbar"></div>-->
                 <content style="z-index: 1"></content>
             </div>
 
             <div class="float2">
-                <!--                <div class="statusbar"></div>-->
-                <!--                <ion-progress-bar type="indeterminate"></ion-progress-bar>-->
-            <img
-                        src="../../assets/player/music-library-2.svg"
-                        class="pllib heartbeat"
+                <img
                         id="music-library-2"
-            />
+                        class="pllib heartbeat"
+                        src="../../assets/player/music-library-2.svg"
+                />
             </div>
 
             <div class="float">
-                <img
-                        src="../../assets/player/music-library-2.svg"
-                        class="pllib heartbeat"
-                />
-                <img src="../../assets/player/Frame 34087.svg" class="backicon"/>
-                <img src="../../assets/player/Group 5.svg" class="playicon"/>
-                <img src="../../assets/player/Frame 34086.svg" class="backicon"/>
-                <img src="../../assets/player/repeate-one.svg" class="repeaticon"/>
+                <ion-button class="heartbeat_left_1">
+                    <ion-icon slot="icon-only" :icon="heartbeat()"></ion-icon>
+                </ion-button>
+
+                <ion-button class="back_button_Left_2">
+                    <ion-icon slot="icon-only" :icon="Back()"></ion-icon>
+                </ion-button>
+
+                <ion-button class="play_button_left_3">
+                    <ion-icon slot="icon-only" :icon="play()"></ion-icon>
+                </ion-button>
+
+                <ion-button class="forward_button_left_4">
+                    <ion-icon slot="icon-only" :icon="forward()"></ion-icon>
+                </ion-button>
+
+                <ion-button class="repeaticon_left_5">
+                    <ion-icon slot="icon-only" :icon="repeaticon()"></ion-icon>
+                </ion-button>
+
             </div>
 
         </ion-content>
@@ -213,19 +206,28 @@ ion-progress-bar {
 </template>
 
 <script lang="ts">
-import {
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonContent,
-    IonPage,
-    IonProgressBar
-} from "@ionic/vue";
-import {personCircle} from "ionicons/icons";
+import {IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from "@ionic/vue";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import content from "../components/contentdisplay.vue";
 
 export default {
+    methods: {
+        Back() {
+            return "../../assets/player/Frame 34087.svg";
+        },
+        heartbeat() {
+            return "../../assets/player/music-library-2.svg";
+        },
+        play() {
+            return "../../assets/player/Group 5.svg";
+        },
+        forward() {
+            return "../../assets/player/Frame 34086.svg";
+        },
+        repeaticon() {
+            return "../../assets/player/repeate-one.svg";
+        },
+    },
     components: {IonHeader, IonToolbar, IonTitle, IonContent, IonPage, content},
 };
 </script>
