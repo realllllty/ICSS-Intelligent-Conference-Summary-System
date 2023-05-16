@@ -9,10 +9,8 @@
     border-radius: 30px;
     overflow: hidden;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 30px;
     background-color: darkslategray;
     box-shadow: 0 -5px 10px rgba(47, 26, 185, 0.08);
     margin-top: 5px;
@@ -52,14 +50,6 @@
 //padding: 0px;
 }
 
-.pllib {
-    width: 24px;
-    height: 24px;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    z-index: 10;
-}
 
 
 @-webkit-keyframes heartbeat {
@@ -141,6 +131,25 @@ ion-progress-bar {
     --background: #a9cea9;
 }
 
+#play_button_left_3 {
+    font-size: 150%;
+    --padding-start: 10px;
+    --padding-end: 10px;
+}
+
+#back_button_Left_2 {
+    font-size: 170%;
+    --padding-start: 10px;
+    --padding-end: 10px;
+}
+
+#forward_button_left_4{
+    font-size: 170%;
+    --padding-start: 10px;
+    --padding-end: 10px;
+}
+
+
 #music-library-2 {
     position: absolute;
     width: 50%;
@@ -178,23 +187,23 @@ ion-progress-bar {
             </div>
 
             <div class="float">
-                <ion-button class="heartbeat_left_1">
+                <ion-button class="heartbeat_left_1" fill="clear">
                     <ion-icon slot="icon-only" :icon="heartbeat()"></ion-icon>
                 </ion-button>
 
-                <ion-button class="back_button_Left_2">
+                <ion-button id="back_button_Left_2" fill="clear">
                     <ion-icon slot="icon-only" :icon="Back()"></ion-icon>
                 </ion-button>
 
-                <ion-button class="play_button_left_3">
+                <ion-button id="play_button_left_3" fill="clear">
                     <ion-icon slot="icon-only" :icon="play()"></ion-icon>
                 </ion-button>
 
-                <ion-button class="forward_button_left_4">
+                <ion-button id="forward_button_left_4" fill="clear">
                     <ion-icon slot="icon-only" :icon="forward()"></ion-icon>
                 </ion-button>
 
-                <ion-button class="repeaticon_left_5">
+                <ion-button class="repeaticon_left_5" fill="clear">
                     <ion-icon slot="icon-only" :icon="repeaticon()"></ion-icon>
                 </ion-button>
 
