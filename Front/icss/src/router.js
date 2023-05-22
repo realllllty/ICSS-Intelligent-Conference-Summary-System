@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "@ionic/vue-router";
 // import { RouteRecordRaw } from "vue-router";
-import Example from "./components/Example.vue";
+import Bottom_Bar from "./components/App_bottom_bar.vue";
 
 const routes = [
   {
@@ -9,7 +9,7 @@ const routes = [
   },
   {
     path: "/",
-    component: Example,
+    component: Bottom_Bar,
     children: [
       {
         path: "",
@@ -29,7 +29,7 @@ const routes = [
       },
       {
         path: "login",
-        component: () => import("./views/login.vue"),
+        component: () => import("./components/Login.vue"),
       },
     ],
   },
