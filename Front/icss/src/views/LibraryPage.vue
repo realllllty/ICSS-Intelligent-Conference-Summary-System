@@ -36,7 +36,7 @@ import {
   IonContent,
   IonPage,
 } from "@ionic/vue";
-import dp from "../Content_display/dpcontent.vue";
+import dp from "../Content_display/dplibrary.vue";
 export default {
   components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, dp },
 };
