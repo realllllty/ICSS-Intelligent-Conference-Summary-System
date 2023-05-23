@@ -22,6 +22,9 @@
 
 
 <script setup>
+import {ref} from "vue";
+import RecordRTC from "recordrtc";
+
 function heartbeat() {
   return "../../assets/player/music-library-2.svg";
 }
@@ -47,12 +50,10 @@ function repeaticon() {
 }
 
 
-import {ref} from "vue";
-import RecordRTC from "recordrtc";
-
 const isRecording = ref(false);
 const mediaRecorder = ref(null);
 const socket = ref(null);
+let voice_stream = ref(null);
 
 async function toggleRecording() {
   if (isRecording.value === false) {
@@ -67,6 +68,7 @@ async function toggleRecording() {
 async function startRecording() {
   navigator.mediaDevices.getUserMedia({audio: true})
       .then((stream) => {
+        voice_stream.value = stream;
         mediaRecorder.value = new RecordRTC(stream, {  //创建一个RecordRTC对象
           type: "audio",
           mimeType: "audio/webm",
@@ -81,6 +83,7 @@ async function startRecording() {
           ondataavailable: (blob) => {
             sendAudioData(blob);
           }, //定义一个回调函数,每次生成音频数据块blob的时候触发,并且将blob数据块交给sendAudioData函数发送
+
         });
 
         // 连接 WebSocket 服务器
@@ -93,7 +96,10 @@ async function startRecording() {
 }
 
 function stopRecording() {
-  mediaRecorder.value.stopRecording(async () => {
+  voice_stream.value.getAudioTracks().forEach((track) => {
+    track.stop();
+  });    //释放音频流
+  mediaRecorder.value.stopRecording(async () => {       //停止录制
     socket.value.close();
     mediaRecorder.value = null;
   });
