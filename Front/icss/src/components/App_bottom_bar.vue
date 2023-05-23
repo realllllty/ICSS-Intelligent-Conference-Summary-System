@@ -3,15 +3,15 @@
     <ion-tabs>
       <ion-router-outlet></ion-router-outlet>
       <ion-tab-bar slot="bottom" class="float">
-        <ion-tab-button href="/home" tab="home">
+        <ion-tab-button href="/app/home" tab="home">
           <ion-icon :icon="micOutline()"/>
         </ion-tab-button>
 
-        <ion-tab-button href="/library" tab="library">
+        <ion-tab-button href="/app/library" tab="library">
           <ion-icon :icon="libraryOutline()"/>
         </ion-tab-button>
 
-        <ion-tab-button href="/about" tab="about">
+        <ion-tab-button href="/app/about" tab="about">
           <ion-icon :icon="informationCircleOutline()"/>
         </ion-tab-button>
       </ion-tab-bar>
