@@ -5,24 +5,25 @@
 </template>
 
 <script lang="js">
-import { IonApp, IonRouterOutlet } from '@ionic/vue';
+import {IonApp, IonRouterOutlet} from '@ionic/vue';
 
-import { defineComponent } from 'vue';
-
-import App_bar from './components/App_bottom_bar.vue';
+import {defineComponent} from 'vue';
 
 function isLoggedIn() {
-  return false;
+  // 检查是否存在一个token
+  const token = localStorage.getItem('token');
+  return token !== null && token !== undefined && token !== '';
 }
+
 
 export default defineComponent({
   name: 'App',
-  components: { IonApp, IonRouterOutlet },
+  components: {IonApp, IonRouterOutlet},
 
   mounted() {
     if (isLoggedIn()) {
       this.$router.push('/app/home');
-    }else {
+    } else {
       this.$router.push('/');
     }
   },

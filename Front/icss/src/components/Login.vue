@@ -7,22 +7,21 @@
       </ion-card-header>
     </ion-card>
 
-      <div class="container">
-        <form @submit.prevent="submitForm" class="login-form">
-          <div class="form-group">
-            <label for="username" class="form-label">Username:<p></p></label>
-            <input type="text" id="username" v-model="username" required class="form-input">
-          </div>
-          <div class="form-group">
-            <label for="password" class="form-label">Password:<p></p></label>
-            <input type="password" id="password" v-model="password" required class="form-input">
-          </div>
-          <div class="form-group">
-            <button type="submit" class="form-button">Log in</button>
-          </div>
-        </form>
-      </div>
-
+    <div class="container">
+      <form class="login-form" @submit.prevent="submitForm">
+        <div class="form-group">
+          <label class="form-label" for="username">Username:<p></p></label>
+          <input id="username" v-model="username" class="form-input" required type="text">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="password">Password:<p></p></label>
+          <input id="password" v-model="password" class="form-input" required type="password">
+        </div>
+        <div class="form-group">
+          <button class="form-button" type="submit">Log in</button>
+        </div>
+      </form>
+    </div>
 
 
   </ion-page>
@@ -37,11 +36,32 @@ const username = ref('');
 const password = ref('');
 
 const submitForm = () => {
-  console.log('用户名:', username.value);
-  console.log('密码:', password.value);
-  // 这里你可以添加你的登录逻辑，例如发送请求到服务器验证用户名和密码
-}
+  const submitForm = () => {
+    console.log('用户名:', username.value);
+    console.log('密码:', password.value);
 
+    // 发送请求到服务器验证用户名和密码
+    fetch('http://your-server-address/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({username: username.value, password: password.value})
+    })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 200) {
+            console.log('登录成功！', data);
+            // 你可以在这里进行一些登录成功后的操作，比如将JWT保存到localStorage
+            localStorage.setItem('token', data.token);
+          } else {
+            console.log('登录失败：', data.msg);
+          }
+        })
+        .catch(err => console.error('请求失败：', err));
+  }
+
+}
 
 
 </script>
