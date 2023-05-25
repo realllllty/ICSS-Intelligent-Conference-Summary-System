@@ -65,3 +65,4 @@ rpc 能够将服务封装起来(只需要提供函数接口),客户就能够像�
 # Others
 
 - vscode 快速打开关闭终端快捷键 ctrl + `
+- npm 查看全局安装的包(使用-g 选项):`npm list -g --depth 0`
