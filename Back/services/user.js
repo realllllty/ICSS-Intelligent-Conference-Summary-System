@@ -33,6 +33,8 @@ exports.register = (req, res) => {
     });
   });
 };
+
+
 // 登录的处理函数
 exports.login = (req, res) => {
   // 接收客户端传递的表单数据

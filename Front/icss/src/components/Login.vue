@@ -36,31 +36,29 @@ const username = ref('');
 const password = ref('');
 
 const submitForm = () => {
-  const submitForm = () => {
-    console.log('用户名:', username.value);
-    console.log('密码:', password.value);
+  console.log('用户名:', username.value);
+  console.log('密码:', password.value);
 
-    // 发送请求到服务器验证用户名和密码
-    fetch('http://your-server-address/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({username: username.value, password: password.value})
-    })
-        .then(response => response.json())
-        .then(data => {
-          if (data.status === 200) {
-            console.log('登录成功！', data);
-            // 你可以在这里进行一些登录成功后的操作，比如将JWT保存到localStorage
-            localStorage.setItem('token', data.token);
-          } else {
-            console.log('登录失败：', data.msg);
-          }
-        })
-        .catch(err => console.error('请求失败：', err));
-  }
-
+  // 发送请求到服务器验证用户名和密码
+  fetch('http://localhost:3000', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token')}` // 附加JWT到请求的Header中
+    },
+    body: JSON.stringify({username: username.value, password: password.value})
+  })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 200) {
+          console.log('登录成功！', data);
+          // 你可以在这里进行一些登录成功后的操作，比如将JWT保存到localStorage
+          localStorage.setItem('token', data.token);
+        } else {
+          console.log('登录失败：', data.msg);
+        }
+      })
+      .catch(err => console.error('请求失败：', err));
 }
 
 
