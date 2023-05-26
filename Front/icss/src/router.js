@@ -1,12 +1,21 @@
 import {createRouter, createWebHistory} from "@ionic/vue-router";
-// import { RouteRecordRaw } from "vue-router";
+import Choose from "@/components/Choose.vue";
+import Login from "@/components/Login.vue";
+import Register from "@/components/Register.vue";
 
 const routes = [
     {
         path: "/",
-        component: () => import("./components/Login.vue"),
+        component: Choose,
     },
-
+    {
+        path: "/login",
+        component: Login,
+    },
+    {
+        path: "/register",
+        component: Register,
+    },
     {
         path: "/app",
         component: () => import("./components/App_bottom_bar.vue"),
@@ -28,7 +37,6 @@ const routes = [
 ];
 
 const router = createRouter({
-    // Use: createWebHistory(process.env.BASE_URL) in your app
     history: createWebHistory(),
     routes,
 });
