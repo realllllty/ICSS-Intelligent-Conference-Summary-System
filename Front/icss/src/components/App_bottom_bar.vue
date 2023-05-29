@@ -58,7 +58,8 @@ export default {
 <style scoped>
 .float {
   width: 90%;
-  position: relative;
+  position: fixed;
+  bottom: 0;
   transform: translate(5%, -30%);
   border-radius: 30px;
   overflow: hidden;

@@ -6,29 +6,31 @@
     </ion-header>
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
-        <ion-toolbar>
+        <ion-toolbar :color="0">
           <ion-title size="large">My GatherGenius</ion-title>
         </ion-toolbar>
       </ion-header>
 
       <ion-avatar class="avatar">
-        <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        <img alt="Silhouette of a person's head" src="../../assets/About/hongshu.JPG"/>
       </ion-avatar>
 
       <div class="username">
         PLACEHOLDER
       </div>
 
-      <ion-item>
+      <ion-item color="none">
         <ion-label position="floating"><b>OpenAI Token</b></ion-label>
         <ion-input v-model="openaiToken" :clear-input="true"></ion-input>
+        <ion-button slot="end" class="apply_button" size="small">Apply</ion-button>
       </ion-item>
-      <ion-item :button="true" class="ABOUT">
-        <ion-label><b>About</b></ion-label>
+      <ion-item :button="true" class="ABOUT" color="none">
+        <ion-label style="text-align: center"><b>About</b></ion-label>
       </ion-item>
-      <ion-item :button="true" class="key?">
-        <ion-label>🔑</ion-label>
+      <ion-item :button="true" class="key?" color="none">
+        <ion-label style="text-align: center"><b>Share it</b></ion-label>
       </ion-item>
+
 
     </ion-content>
   </ion-page>
@@ -73,7 +75,7 @@ ion-page {
   width: 80px;
   height: 80px;
   border-radius: 50%; /* 这将使头像呈圆形 */
-  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* 给头像添加阴影效果，使其更显眼 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 给头像添加阴影效果，使其更显眼 */
 }
 
 .username {
@@ -91,9 +93,19 @@ ion-title {
   color: #444; /* 更深的标题颜色 */
 }
 
-.ABOUT {
-
+.ion-page ion-content {
+  --background: url('../../assets/About/bg.jpg') no-repeat center center / cover;
 }
+
+.apply_button {
+  position: relative;
+  margin-top: 38px;
+}
+
+ion-item {
+  background: transparent;
+}
+
 </style>
 
 
