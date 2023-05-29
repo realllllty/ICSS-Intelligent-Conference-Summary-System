@@ -26,7 +26,7 @@ const routes = [
             },
             {
                 path: "about",
-                component: () => import("./views/About.vue"),
+                component: () => import("./views/Settings.vue"),
             },
             {
                 path: "library",

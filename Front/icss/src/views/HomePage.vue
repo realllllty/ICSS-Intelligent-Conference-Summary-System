@@ -1,5 +1,6 @@
 <template>
     <ion-page>
+
         <ion-header>
             <ion-toolbar color="primary">
                 <ion-title align="center"> GatherGenius 集思</ion-title>

@@ -11,8 +11,9 @@ import {defineComponent} from 'vue';
 
 function isLoggedIn() {
   // 检查是否存在一个token
-  const token = localStorage.getItem('token');
-  return token !== null && token !== undefined && token !== '';
+  // const token = localStorage.getItem('token');
+  // return token !== null && token !== undefined && token !== '';
+  return true;
 }
 
 
