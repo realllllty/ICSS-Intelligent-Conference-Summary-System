@@ -66,7 +66,7 @@ ion-page {
 }
 
 .avatar {
-  margin-top: 70px;
+  margin-top: 130px;
   margin-left: 50%;
   margin-bottom: 70px;
   transform: translateX(-50%);
@@ -83,7 +83,7 @@ ion-page {
   font-weight: bold;
   margin-top: 10px;
   text-align: center;
-  margin-bottom: 160px;
+  margin-bottom: 90px;
   color: #333; /* 更改用户名的颜色，使其与背景形成对比 */
 }
 
