@@ -14,6 +14,8 @@
         <ion-title>音频库</ion-title>
       </ion-toolbar>
     </ion-header>
+
+
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
@@ -23,21 +25,30 @@
           <ion-searchbar></ion-searchbar>
         </ion-toolbar>
       </ion-header>
+
       <dp></dp>
+
     </ion-content>
   </ion-page>
 </template>
 
-<script lang="ts">
+<script lang="js">
 import {
   IonHeader,
   IonToolbar,
   IonTitle,
   IonContent,
   IonPage,
+  IonNavLink
 } from "@ionic/vue";
+import AudioMessage from "@/components/AudioMessage.vue";
 import dp from "../Content_display/dplibrary.vue";
 export default {
   components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, dp },
+  data() {
+    return {
+      component: AudioMessage,
+    };
+  }
 };
 </script>

@@ -1,11 +1,13 @@
 <template>
   <ion-app>
-    <ion-router-outlet></ion-router-outlet>
+<router-view>
+</router-view>
+
   </ion-app>
 </template>
 
 <script lang="js">
-import {IonApp, IonRouterOutlet} from '@ionic/vue';
+import {IonApp} from '@ionic/vue';
 
 import {defineComponent} from 'vue';
 
@@ -19,7 +21,7 @@ function isLoggedIn() {
 
 export default defineComponent({
   name: 'App',
-  components: {IonApp, IonRouterOutlet},
+  components: {IonApp},
 
   mounted() {
     if (isLoggedIn()) {

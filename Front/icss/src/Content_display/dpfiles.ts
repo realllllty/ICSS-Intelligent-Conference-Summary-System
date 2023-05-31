@@ -1,4 +1,5 @@
 interface dpMsgUnit {
+  id: string;
   keywords: string[];
   time: string;
   title: string;
@@ -10,6 +11,7 @@ const dpMsg: dpMsgUnit[] = [];
 
 //for test usage...
 const msg = {
+  id: "0",
   keywords: ["test", "example"],
   time: "2022-05-01",
   title: "This is a test message",
@@ -18,6 +20,7 @@ const msg = {
 };
 
 const msg2 = {
+  id: "1",
   keywords: ["test2", "example2"],
   time: "2022-05-01",
   title: "This is a test message2",

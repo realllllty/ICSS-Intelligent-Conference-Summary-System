@@ -46,7 +46,7 @@ export default {
     width: 90%;
     height: 10%;
     position: fixed;
-    bottom: 3.5%;
+    bottom: 10%;
     right: 5%;
     border-radius: 30px;
     overflow: hidden;
@@ -60,9 +60,9 @@ export default {
 
 .float2 {
     width: 90%;
-    height: 40%;
+    height: 33%;
     position: fixed;
-    bottom: 15%;
+    bottom: 22%;
     right: 5%;
     border-radius: 30px;
     overflow: hidden;
