@@ -1,6 +1,6 @@
 <template>
   <ion-app>
-    <ion-router-outlet></ion-router-outlet>
+    <router-view />
   </ion-app>
 </template>
 
@@ -10,9 +10,10 @@ import {IonApp, IonRouterOutlet} from '@ionic/vue';
 import {defineComponent} from 'vue';
 
 function isLoggedIn() {
-  // 检查是否存在一个token
-  const token = localStorage.getItem('token');
-  return token !== null && token !== undefined && token !== '';
+  // // 检查是否存在一个token
+  // const token = localStorage.getItem('token');
+  // return token !== null && token !== undefined && token !== '';
+  return true;
 }
 
 

@@ -20,10 +20,8 @@
   </ion-button>
 </template>
 
-
 <script setup>
-import {ref} from "vue";
-import RecordRTC from "recordrtc";
+import { onUnmounted, ref } from "vue";
 
 function heartbeat() {
   return "../../assets/player/music-library-2.svg";
@@ -49,73 +47,118 @@ function repeaticon() {
   return "../../assets/player/repeate-one.svg";
 }
 
-
+import Recorder from "js-audio-recorder";
+import io from "socket.io-client";
 const isRecording = ref(false);
 const mediaRecorder = ref(null);
-const socket = ref(null);
+// const socket = ref(null);
 let voice_stream = ref(null);
+let socket = null;
+let iasrtsend = null;
 
-async function toggleRecording() {
+function toggleRecording() {
   if (isRecording.value === false) {
-    await startRecording();
     isRecording.value = true; //开始录音,改变按钮状态
+    startRecording();
   } else {
-    stopRecording();
     isRecording.value = false; //停止录音，改变按钮状态
+    stopRecording();
   }
 }
 
-async function startRecording() {
-  navigator.mediaDevices.getUserMedia({audio: true})
-      .then((stream) => {
-        voice_stream.value = stream;
-        mediaRecorder.value = new RecordRTC(stream, {  //创建一个RecordRTC对象
-          type: "audio",
-          mimeType: "audio/webm",
-          numberOfAudioChannels: 1,
-          recorderType: RecordRTC.StereoAudioRecorder,
-          desiredSampRate: 16000,
-          checkForInactiveTracks: true,
-          timeSlice: 1000, //每一秒触发一次ondataavailable回调
+let recorder = new Recorder({
+  sampleBits: 8, // 采样位数，支持 8 或 16，默认是16
+  sampleRate: 11025, // 采样率，支持 11025、16000、22050、24000、44100、48000，根据浏览器默认值，
+  numChannels: 1, // 声道，支持 1 或 2， 默认是1
+  // compiling: false,(0.x版本中生效,1.x增加中)  // 是否边录边转换，默认是false
+  compiling: true,
+});
 
-          // requires timeSlice above
-          // returns blob via callback function(通过回调函数返回blob)
-          ondataavailable: (blob) => {
-            sendAudioData(blob);
-          }, //定义一个回调函数,每次生成音频数据块blob的时候触发,并且将blob数据块交给sendAudioData函数发送
-
-        });
-
-        // 连接 WebSocket 服务器
-        socket.value = new WebSocket("ws://localhost:3000");
-        mediaRecorder.value.startRecording(); //API启动录制
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+function startRecording() {
+  console.log("recordButton clicked");
+  if (iasrtsend) clearInterval(iasrtsend);
+  recorder.start().then(
+    () => {
+      // 开始录音
+      useWebSocket();
+    },
+    (error) => {
+      // 出错了
+      console.log(`出错了`);
+    }
+  );
 }
 
+import axios from "axios";
 function stopRecording() {
-  voice_stream.value.getAudioTracks().forEach((track) => {
-    track.stop();
-  });    //释放音频流
-  mediaRecorder.value.stopRecording(async () => {       //停止录制
-    socket.value.close();
-    mediaRecorder.value = null;
+  console.log("stopButton clicked");
+  const blob = recorder.getWAVBlob(); // 获取wav格式音频数据
+  // 此处获取到blob对象后需要设置fileName满足当前项目上传需求，其它项目可直接传把blob作为file塞入formData
+  const newbolb = new Blob([blob], { type: "audio/wav" });
+  const fileOfBlob = new File([newbolb], new Date().getTime() + ".wav");
+  // 创建一个新的 FormData 对象
+  let formData = new FormData();
+
+  // 把文件添加到 FormData 对象中
+  formData.append("file", fileOfBlob);
+  // 使用 axios 发送文件
+  axios
+    .post("http://localhost:3000/whisper", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  recorder.stop();
+  if (socket) {
+    socket.disconnect();
+    socket = null;
+  }
+  clearInterval(iasrtsend);
+}
+
+function useWebSocket() {
+  // console.log(recorder.getNextData())
+  // ws = ws.binaryType = "arraybuffer"; //传输的是 ArrayBuffer 类型的数据
+  if (socket) {
+    socket.disconnect();
+    socket = null;
+  }
+  socket = io("http://localhost:3000"); // 在这里初始化socket
+  socket.on("connect", () => {
+    console.log(socket.id);
+    console.log("Connected to the node.js ws server");
+    socket.on("test", (msg) => {
+      console.log(msg);
+    });
+    socket.on("asrt", async () => {
+      console.log("asrt");
+      iasrtsend = setInterval(() => {
+        // 获取要发送的数据
+        const sendData = recorder.getNextData();
+        console.log(sendData);
+        // 发送数据到所有连接的客户端
+        socket.emit("record", sendData);
+      }, 1000);
+    });
+  });
+
+  socket.on("disconnect", (reason) => {
+    console.log(reason);
+  });
+  onUnmounted(() => {
+    clearInterval(iasrtsend);
   });
 }
-
-function sendAudioData(blob) {
-  if (socket.value.readyState === WebSocket.OPEN) {
-    socket.value.send(blob);
-  }
-}
-
 </script>
 
-
 <style scoped>
-
 #record_button_left_3 {
   font-size: 150%;
   --padding-start: 10px;
@@ -133,6 +176,4 @@ function sendAudioData(blob) {
   --padding-start: 10px;
   --padding-end: 10px;
 }
-
-
 </style>

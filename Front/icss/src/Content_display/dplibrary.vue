@@ -1,5 +1,5 @@
 <template>
-  <ion-card v-for="(msg, index) in dpMsg">
+  <ion-card v-for="(msg, index) in dpMsg" @click="changeroute(index)" v-wave>
     <ion-grid>
       <ion-row>
         <ion-col size="auto" style="width: 80%">
@@ -39,4 +39,12 @@
 import { dpMsg } from "./dpfiles";
 import { IonFab, IonFabButton, IonIcon } from "@ionic/vue";
 import { add } from "ionicons/icons";
+import { useRouter } from "vue-router";
+const router = useRouter();
+function changeroute(index) {
+  console.log("go to the details");
+  setTimeout(() => {
+    router.push(`/app/detail/${index}`);
+  }, 200);
+}
 </script>

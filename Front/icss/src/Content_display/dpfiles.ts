@@ -25,6 +25,14 @@ const msg2 = {
   length: "27:52",
 };
 
-dpMsg.push(msg, msg2);
+const msg3 = {
+  keywords: ["test3", "example3"],
+  time: "2022-05-01",
+  title: "This is a test message3",
+  preview: "This is the preview content of the test message2.",
+  length: "27:52",
+};
+
+dpMsg.push(msg, msg2, msg3);
 
 export { dpMsg };

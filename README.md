@@ -66,3 +66,17 @@ rpc 能够将服务封装起来(只需要提供函数接口),客户就能够像�
 
 - vscode 快速打开关闭终端快捷键 ctrl + `
 - npm 查看全局安装的包(使用-g 选项):`npm list -g --depth 0`
+
+创建表语句
+
+```sql
+CREATE TABLE UserText (
+    RecordID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT,
+    RecognizedText TEXT,
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    //定义GptText
+);
+
+```
