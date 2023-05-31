@@ -1,7 +1,7 @@
-const grpc = require("grpc");
+const grpc = require("@grpc/grpc-js");
 const protoLoader = require("@grpc/proto-loader");
 
-const PROTO_PATH = "../proto/asrt.proto"; // 编译 .proto 文件
+const PROTO_PATH = __dirname + "/../proto/asrt.proto"; // 编译 .proto 文件
 
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   keepCase: true,
@@ -35,6 +35,10 @@ audioStream.on("data", (response) => {
   console.log(response);
 });
 
+audioStream.on("error", (err) => {
+  console.error("Stream error:", err);
+});
+
 audioStream.on("end", () => {
   // 处理 gRPC 端的结束信号
   console.log("Stream ended");
@@ -43,10 +47,25 @@ audioStream.on("end", () => {
 //----------发送语音流到服务端-----------------
 // 获取音频流并通过 grpc 客户端发送出去
 function sendAudioStream(audioData) {
-  const speechRequest = {
-    audioData: audioData,
-    // 提供其他所需的 SpeechRequest 字段
+  // const speechRequest = {
+  //   audioData: audioData,
+  //   // 提供其他所需的 SpeechRequest 字段
+  // };
+  const wavData = {
+    samples: audioData,
+    sample_rate: 11025,
+    channels: 1,
+    byte_width: 1,
   };
+
+  const speechRequest = {
+    wav_data: wavData,
+  };
+
+  // const errMsg = SpeechRequest.verify(speechRequest);
+  // if (errMsg) throw Error(errMsg);
+
+  // const message = SpeechRequest.encode(speechRequest).finish();
 
   audioStream.write(speechRequest);
 }

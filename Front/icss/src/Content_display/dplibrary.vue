@@ -1,16 +1,21 @@
 <template>
-  <ion-card v-for="(msg, index) in dpMsg" @click="goToDetail(msg)" :key="index">
+  <ion-card v-for="(msg, index) in dpMsg" @click="changeroute(index)" v-wave>
     <ion-grid>
       <ion-row>
         <ion-col size="auto" style="width: 80%">
           <ion-card-header>
             <ion-card-title>{{ msg.title }}</ion-card-title>
+            <!-- <ion-card-subtitle>
+              {{ `About: ${msg.keywords[0]} ${msg.keywords[1]}` }}
+              <br />
+              {{ msg.time }}
+            </ion-card-subtitle> -->
           </ion-card-header>
 
           <ion-card-content>
             <div>
               {{ `About: ${msg.keywords[0]} ${msg.keywords[1]}` }}
-              <br/>
+              <br />
               {{ msg.time }}
             </div>
             Here's a small text description for the card content. Nothing more,
@@ -30,17 +35,16 @@
   </ion-card>
 </template>
 
-<script lang="ts" setup>
-import { useRouter } from 'vue-router';
+<script setup lang="ts">
 import { dpMsg } from "./dpfiles";
 import { IonFab, IonFabButton, IonIcon } from "@ionic/vue";
 import { add } from "ionicons/icons";
-
+import { useRouter } from "vue-router";
 const router = useRouter();
-
-const goToDetail = (msg) => {
-  router.push({ name: 'Detail', params: { id: msg.id } });
-};
-
-
+function changeroute(index) {
+  console.log("go to the details");
+  setTimeout(() => {
+    router.push(`/app/detail/${index}`);
+  }, 200);
+}
 </script>

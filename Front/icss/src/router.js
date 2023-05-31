@@ -1,53 +1,40 @@
-import {createRouter, createWebHistory} from "@ionic/vue-router";
-import Choose from "@/components/Choose.vue";
-import Login from "@/components/Login.vue";
-import Register from "@/components/Register.vue";
+import { createRouter, createWebHistory } from "@ionic/vue-router";
+// import { RouteRecordRaw } from "vue-router";
 
 const routes = [
-    {
-        path: "/",
-        component: Choose,
-    },
-    {
-        path: "/login",
-        component: Login,
-    },
-    {
-        path: "/register",
-        component: Register,
-    },
-    {
-        path: "/app",
-        component: () => import("./components/App_bottom_bar.vue"),
-        children: [
-            {
-                path: "home",
-                component: () => import("./views/HomePage.vue"),
-            },
-            {
-                path: "about",
-                component: () => import("./views/Settings.vue"),
-            },
-            {
-                path: "library",
-                component: () => import("./views/LibraryPage.vue"),
-                children:[
-                    {
-                        path: "detail/:id",
-                        name: "Detail",
-                        component: () => import("./components/Detail.vue"),
-                        props: true,
-                    }
-                ]
-            }
-        ],
-    },
+  {
+    path: "/",
+    component: () => import("./components/Login.vue"),
+  },
+
+  {
+    path: "/app",
+    component: () => import("./components/App_bottom_bar.vue"),
+    children: [
+      {
+        path: "home",
+        component: () => import("./views/HomePage.vue"),
+      },
+      {
+        path: "about",
+        component: () => import("./views/About.vue"),
+      },
+      {
+        path: "library",
+        component: () => import("./views/LibraryPage.vue"),
+      },
+      {
+        path: "detail/:id",
+        component: () => import("./views/detail.vue"),
+      },
+    ],
+  },
 ];
 
 const router = createRouter({
-    history: createWebHistory(),
-    routes,
+  // Use: createWebHistory(process.env.BASE_URL) in your app
+  history: createWebHistory(),
+  routes,
 });
-
 
 export default router;
