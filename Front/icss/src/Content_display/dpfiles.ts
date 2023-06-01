@@ -1,16 +1,13 @@
 interface dpMsgUnit {
-  keywords: string[];
   time: string;
-  title: string;
   preview: string;
-  length: string;
+  id: string;
 }
 
 const dpMsg: dpMsgUnit[] = [];
 
 //for test usage...
 const msg = {
-  keywords: ["test", "example"],
   time: "2022-05-01",
   title: "This is a test message",
   preview: "This is the preview content of the test message.",

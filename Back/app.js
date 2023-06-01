@@ -8,6 +8,7 @@ const setupSocketIO = require("./routes/asrt");
 const http = require("http");
 const { Server } = require("socket.io");
 const whisper = require("./routes/whisper_route");
+const lib = require("./routes/lib");
 
 const app = express();
 const server = http.createServer(app);
@@ -30,6 +31,7 @@ app.use(cors());
 // );
 app.use("/user", userRouter);
 app.use("/whisper", whisper);
+app.use("/lib", lib);
 //定义错误处理中间件
 app.use((err, req, res, next) => {
   if (err instanceof joi.ValidationError)

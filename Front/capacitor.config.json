@@ -1,0 +1,8 @@
+{
+  "appId": "com.example.app",
+  "appName": "Gather Genius",
+  "webDir": "build",
+  "server": {
+    "androidScheme": "https"
+  }
+}

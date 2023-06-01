@@ -1,29 +1,24 @@
 <template>
-  <ion-card v-for="(msg, index) in dpMsg" @click="changeroute(index)" v-wave>
+  <ion-card
+    v-for="(msg, index) in dpMsg.list"
+    :key="index"
+    @click="changeroute(index)"
+    v-wave
+  >
     <ion-grid>
       <ion-row>
         <ion-col size="auto" style="width: 80%">
-          <ion-card-header>
-            <ion-card-title>{{ msg.title }}</ion-card-title>
-            <!-- <ion-card-subtitle>
-              {{ `About: ${msg.keywords[0]} ${msg.keywords[1]}` }}
-              <br />
-              {{ msg.time }}
-            </ion-card-subtitle> -->
-          </ion-card-header>
-
           <ion-card-content>
             <div>
-              {{ `About: ${msg.keywords[0]} ${msg.keywords[1]}` }}
-              <br />
-              {{ msg.time }}
+              {{ msg.Gpt }}
             </div>
-            Here's a small text description for the card content. Nothing more,
-            nothing less.
+            <div>
+              {{ msg.Recog }}
+            </div>
           </ion-card-content>
         </ion-col>
         <ion-col>
-          <div>{{ msg.length }}</div>
+          <div>{{ msg.time }}</div>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -35,11 +30,12 @@
   </ion-card>
 </template>
 
-<script setup lang="ts">
-import { dpMsg } from "./dpfiles";
+<script setup>
 import { IonFab, IonFabButton, IonIcon } from "@ionic/vue";
 import { add } from "ionicons/icons";
 import { useRouter } from "vue-router";
+import { onMounted, reactive } from "vue";
+import axios from "axios";
 const router = useRouter();
 function changeroute(index) {
   console.log("go to the details");
@@ -47,4 +43,16 @@ function changeroute(index) {
     router.push(`/app/detail/${index}`);
   }, 200);
 }
+let dpMsg = reactive({ list: [] });
+onMounted(() => {
+  axios
+    .get("http://localhost:3000/lib")
+    .then((response) => {
+      dpMsg.list = response.data.result;
+      console.log(dpMsg);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
 </script>
