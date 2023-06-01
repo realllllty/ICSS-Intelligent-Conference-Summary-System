@@ -1,10 +1,10 @@
 <template>
-  <ion-page>
+  <ion-page >
     <ion-header :translucent="true">
       <ion-toolbar>
       </ion-toolbar>
     </ion-header>
-    <ion-content :fullscreen="true">
+    <ion-content :fullscreen="true" scroll-y="false">
       <ion-header collapse="condense">
         <ion-toolbar :color="0">
           <ion-title size="large">My GatherGenius</ion-title>

@@ -24,8 +24,6 @@ export default defineComponent({
   mounted() {
     if (isLoggedIn()) {
       this.$router.push('/app/home');
-    } else {
-      this.$router.push('/');
     }
   },
 });
