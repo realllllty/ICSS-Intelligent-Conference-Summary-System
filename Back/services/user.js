@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken"); //生成token字符串
 const { secretkey, expiresIn } = require("../config/index");
 const { v4: uuidv4 } = require("uuid");
 
+
 // 注册用户的处理函数
 exports.register = (req, res) => {
   // 获取客户端请求的用户信息

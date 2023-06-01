@@ -7,19 +7,18 @@
       </ion-toolbar>
     </ion-header>
 
-    <ion-content>
-      <div class="float3">
-        <!-- <content style="z-index: 1"></content> -->
+    <ion-content scroll-y="false">
+      <ion-segment value="default" style="margin-top: 5%; width: 90%; left: 5%">
+        <ion-segment-button value="default">
+          <ion-label>OpenAI Whisper API</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="segment">
+          <ion-label>ASRT Voice System</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+      <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+        <img src="../../assets/Login/bootup_logo.png" alt="logo" style="max-width: 100%; max-height: 80%; margin-bottom: 57.5%; filter: opacity(30%); brightness(250%); contrast(50%);">
       </div>
-
-      <div class="float2">
-        <img
-          id="music-library-2"
-          class="pllib heartbeat"
-          src="../../assets/player/music-library-2.svg"
-        />
-      </div>
-
       <div class="float">
         <function_bar></function_bar>
       </div>
@@ -37,6 +36,7 @@ import {
 } from "@ionic/vue";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import function_bar from "../components/Record.vue";
+import axios from "axios";
 
 export default {
   methods: {},
@@ -48,6 +48,21 @@ export default {
     IonPage,
     function_bar,
   },
+  data() {
+    return {
+      voiceRecognitionText: '',
+      gptSummary: '',
+    }
+  },
+  async created() {
+    // 获取语音识别文字
+    const response1 = await axios.get('http://localhost:3000/voiceRecognition');
+    this.voiceRecognitionText = response1.data.text;
+
+    // 获取GPT的总结
+    const response2 = await axios.get('http://localhost:3000/gptSummary');
+    this.gptSummary = response2.data.text;
+  }
 };
 </script>
 
@@ -56,7 +71,7 @@ export default {
   width: 90%;
   height: 10%;
   position: fixed;
-  bottom: 3.5%;
+  bottom: 10%;
   right: 5%;
   border-radius: 30px;
   overflow: hidden;
@@ -70,9 +85,9 @@ export default {
 
 .float2 {
   width: 90%;
-  height: 40%;
+  height: 35%;
   position: fixed;
-  bottom: 15%;
+  bottom: 22%;
   right: 5%;
   border-radius: 30px;
   overflow: hidden;
@@ -86,9 +101,9 @@ export default {
 
 .float3 {
   width: 90%;
-  height: 35%;
+  height: 33%;
   position: fixed;
-  bottom: 56.5%;
+  bottom: 59%;
   right: 5%;
   border-radius: 30px;
   overflow: scroll;

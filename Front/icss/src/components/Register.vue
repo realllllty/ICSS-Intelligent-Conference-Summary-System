@@ -5,14 +5,14 @@
         <ion-buttons slot="start">
           <ion-button href="/">Back</ion-button>
         </ion-buttons>
-        <ion-title>Login</ion-title>
+        <ion-title>Register</ion-title>
       </ion-toolbar>
     </ion-header>
 
     <ion-card class="Login_Page_Card">
       <img alt="logo" class="Login_Page_Card_Logo" src="../../assets/Login/bootup_logo.png"/>
       <ion-card-header>
-        <ion-card-title class="Login_Page_Card_Title">Welcome to GatherGenius!</ion-card-title>
+        <ion-card-title class="Login_Page_Card_Title">Welcome to GatherGenius! Please Register</ion-card-title>
       </ion-card-header>
     </ion-card>
 
@@ -27,12 +27,10 @@
           <input id="password" v-model="password" class="form-input" required type="password">
         </div>
         <div class="form-group">
-          <button class="form-button" type="submit">Log in</button>
+          <button class="form-button" type="submit">Register</button>
         </div>
       </form>
     </div>
-
-
   </ion-page>
 </template>
 
@@ -40,7 +38,6 @@
 <script setup>
 import {IonPage} from '@ionic/vue';
 import {ref} from "vue";
-import Register from "@/components/Register.vue";
 
 const username = ref('');
 const password = ref('');
@@ -49,33 +46,31 @@ const submitForm = () => {
   console.log('用户名:', username.value);
   console.log('密码:', password.value);
 
-  // 发送请求到服务器验证用户名和密码
-  fetch('http://localhost:3000', {
+  // 发送请求到服务器进行注册
+  fetch('http://localhost:3000/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('token')}` // 附加JWT到请求的Header中
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
     },
     body: JSON.stringify({username: username.value, password: password.value})
   })
       .then(response => response.json())
       .then(data => {
         if (data.status === 200) {
-          console.log('登录成功！', data);
-          // 你可以在这里进行一些登录成功后的操作，比如将JWT保存到localStorage
-          localStorage.setItem('token', data.token);
+          console.log('注册成功！', data);
         } else {
-          console.log('登录失败：', data.msg);
+          console.log('注册失败：', data.msg);
         }
       })
       .catch(err => console.error('请求失败：', err));
 }
 
-
 </script>
 
 
 <style scoped>
+/* CSS样式与Login.vue的样式一致 */
 .Login_Page_Card {
   width: 90%;
   height: 45%;

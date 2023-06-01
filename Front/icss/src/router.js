@@ -4,7 +4,15 @@ import { createRouter, createWebHistory } from "@ionic/vue-router";
 const routes = [
   {
     path: "/",
+    component: () => import("./components/Choose.vue"),
+  },
+  {
+    path: "/login",
     component: () => import("./components/Login.vue"),
+  },
+  {
+    path: "/register",
+    component: () => import("./components/Register.vue"),
   },
 
   {
@@ -17,7 +25,7 @@ const routes = [
       },
       {
         path: "about",
-        component: () => import("./views/About.vue"),
+        component: () => import("./views/Settings.vue"),
       },
       {
         path: "library",
@@ -25,7 +33,7 @@ const routes = [
       },
       {
         path: "detail/:id",
-        component: () => import("./views/detail.vue"),
+        component: () => import("./components/Detail.vue"),
       },
     ],
   },

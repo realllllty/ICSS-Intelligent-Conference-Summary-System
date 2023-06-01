@@ -1,5 +1,5 @@
 <template>
-  <ion-button class="heartbeat_left_1" fill="clear">
+  <ion-button class="heartbeat_left_1" fill="clear" href="/app/library">
     <ion-icon slot="icon-only" :icon="heartbeat()"></ion-icon>
   </ion-button>
 
