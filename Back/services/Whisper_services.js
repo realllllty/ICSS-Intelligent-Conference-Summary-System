@@ -6,7 +6,7 @@ const db = require("../database/index");
 
 module.exports = async function transcribeAudio() {
   const filePath = __dirname + "/../uploads/audio.wav"; // 替换为你的音频文件路径
-  const TOKEN = "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"; // 替换为你的TOKEN
+  const TOKEN = "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"; // 替换为你的TOKEN
   const model = "whisper-1";
 
   let form = new FormData();

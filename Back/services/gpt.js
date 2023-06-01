@@ -4,7 +4,7 @@ const { OpenAIApi, Configuration } = require("openai");
 // 从环境变量中获取 OpenAI 密钥并实例化 OpenAIApi
 const openai = new OpenAIApi(
   new Configuration({
-    apiKey: "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",
+    apiKey: "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",
   })
 );
 
